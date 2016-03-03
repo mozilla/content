@@ -15,25 +15,17 @@ $(document).ready(function(){
   windowHeight = $(window).height();
   docHeight = $("body").height();
 
+  $("article").on("click","a",function(){
+    var url = $(this).attr("href");
+    if(sections.indexOf(url) > -1) {
+      selectSection(url);
+      return false;
+    }
+  });
+
   $("nav").on("click","a",function(){
-    $(".selected").removeClass("selected");
-    $(this).addClass("selected");
-    var section = $(this).attr("href");
-
-    autoscrolling = true;
-
-    window.clearTimeout(scrollingTimeout);
-
-    scrollingTimeout = window.setTimeout(function(){
-      autoscrolling = false;
-    },parseInt(scrollSpeed + 100));
-
-    $('html, body').animate({
-      scrollTop: $(section).offset().top
-    }, scrollSpeed, function(){
-      window.location.hash = section;
-    });
-
+     var section = $(this).attr("href");
+     selectSection(section);
     return false;
   });
 
@@ -69,6 +61,42 @@ $(document).ready(function(){
   positionNav();
 });
 
+
+
+function selectSection(section){
+  changeSelectedNav(section);
+  autoscrolling = true;
+
+  window.clearTimeout(scrollingTimeout);
+
+  scrollingTimeout = window.setTimeout(function(){
+    autoscrolling = false;
+  },parseInt(scrollSpeed + 100));
+
+
+  $('html, body').animate({
+    scrollTop: $(section).offset().top
+  }, scrollSpeed, function(){
+    window.location.hash = section;
+    lastScroll = $(window).scrollTop();
+  });
+
+  if(sections.indexOf(section) < 0){
+    section = "#introduction";
+  }
+
+  if(window.history.replaceState) {
+    window.history.replaceState(null, null, section);
+  }
+
+  positionNav();
+}
+
+function changeSelectedNav(section) {
+  $("nav a.selected").removeClass("selected");
+  $("nav [href="+section+"]").addClass("selected");
+}
+
 // Hides the sidebar image if there isn't a lot of room.
 
 function checkLayout(){
@@ -83,10 +111,7 @@ function checkLayout(){
 }
 
 function positionNav(){
-  console.log("positionNav");
   var maxOffset = $("aside").outerHeight() - $(window).height();
-
-  console.log($("aside").outerHeight(),$(window).height());
 
   var scrollDelta = $(window).scrollTop() - lastScroll;
   lastScroll = $(window).scrollTop();
@@ -102,20 +127,20 @@ function positionNav(){
     } else {
       //Scrolling up
       if(asideTop < 0) {
+        // offender
         $("aside").css("top", asideTop - scrollDelta);
       }
     }
+
     if(asideTop > 0) {
       asideTop = 0;
       $("aside").css("top", 0);
     }
+
     if(Math.abs(asideTop) > maxOffset){
       $("aside").css("top", -1 * maxOffset);
     }
   }
-
-
-
 }
 
 
@@ -129,36 +154,23 @@ function scroll(){
     var fromTop = offset.top - windowTop;
     if(fromTop >= 0 && fromTop < 400) {
       var id = $(el).attr('id');
-      selectSection(id);
+      changeSelectedNav("#" + id);
     }
   });
 
   if(windowTop + windowHeight == docHeight){
     var last = articleSections[articleSections.length - 1];
     var id = $(last).attr('id');
-    selectSection(id);
+    changeSelectedNav("#" + id);
   }
 
   positionNav();
 }
 
-function selectSection(id){
-
-  if(sections.indexOf("#" + id) < 0){
-    id = "introduction";
-  }
-
-  $("nav .selected").removeClass("selected");
-  $("nav a[href=#"+id+"]").addClass("selected");
-
-  if(window.history.replaceState) {
-    window.history.replaceState(null, null, "#" + id);
-  }
-}
 
 function checkHash(){
   var hash = window.location.hash;
   if(hash){
-    selectSection(hash.replace("#",""));
+    selectSection(hash);
   }
 }
