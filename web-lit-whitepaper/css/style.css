@@ -33,12 +33,28 @@ h4 {
   color: #273D44;
   margin: 0 0 5px 0;
   font-size: 18px;
+  font-weight: 500;
+}
+
+h5 {
+    color: #273D44;
+    font-size: 16px;
 }
 p,
 li {
   color: rgba(0, 0, 0, 0.45);
   line-height: 160%;
 }
+p span { 
+  font-weight: 500;
+  font-size: 16px;
+  padding: 2px 8px;
+  margin-left: 2px;
+  color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.05);
+  font-style: italic;
+}
+
 ul,
 ol {
   margin: 0 0 30px 0;
@@ -434,7 +450,7 @@ aside .image {
   background-size: contain;
 }
 ul {
-  margin-top: 25px;
+  margin-top: 10px;
 }
 aside nav {
   padding-top: 20px;
@@ -538,4 +554,17 @@ aside .image {
 }
 aside .image img {
   width: calc(100% - 20px);
+}
+
+.persona {
+  padding-left: 190px;
+  position: relative;
+}
+.persona img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 0;
+  top: 5px; 
 }
