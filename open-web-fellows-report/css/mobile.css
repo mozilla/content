@@ -1,0 +1,62 @@
+@media only screen and (max-width: 600px) {
+
+  body {
+    padding: 70px 20px 20px 20px;
+  }
+
+  aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 20px;
+  }
+
+  aside:after {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+  }
+
+  aside .image {
+    margin: 0;
+    width: 140px;
+    height: 60px;
+    position: relative;
+    top: 11px;
+  }
+
+  aside nav {
+    display: none;
+  }
+
+  article {
+    min-width: auto;
+  }
+
+  article section {
+    display: block !important;
+  }
+
+  article {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  article .next-section {
+    display: none;
+  }
+
+  article section {
+    padding-bottom: 0;
+  }
+
+  article section h2 {
+    margin-top: 0;
+  }
+
+}
