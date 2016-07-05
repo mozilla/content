@@ -1,0 +1,34 @@
+@media print {
+
+  aside {
+    display: none;
+  }
+
+  article section {
+    display: block !important;
+  }
+
+  article {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  article .next-section {
+    display: none;
+  }
+
+  article img.hero {
+    display: none;
+  }
+
+  article section {
+    padding-bottom: 0;
+  }
+
+  article section h2 {
+    margin-top: 0;
+  }
+
+}
