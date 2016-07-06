@@ -173,14 +173,13 @@ ul li:before {
   font-size: 1.25em;
   overflow: auto;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: left;
 }
 
 .host img {
-  max-width: 225px;
+  width: 225px;
   left: 0;
   top: 4px;
   float: left;
