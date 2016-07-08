@@ -281,8 +281,11 @@ article ol li {
 
 article img {
   max-width: 100%;
-  border: solid 1px #DDD;
   margin-bottom: 30px;
+}
+
+article img.has-border {
+  border: solid 1px #DDD;
 }
 
 article a {
