@@ -148,11 +148,11 @@ function positionNav(){
 
 function scroll(){
   var windowTop = $(window).scrollTop();
-
   articleSections.each(function(i,el){
     var offset = $(el).offset();
-    var fromTop = offset.top - windowTop;
-    if(fromTop >= 0 && fromTop < 400) {
+    var height = $(el).height();
+    var fromTop = offset.top + height - windowTop;
+    if(fromTop < (height + 400)){
       var id = $(el).attr('id');
       changeSelectedNav("#" + id);
     }
